@@ -24,7 +24,7 @@ def query_groq_api(query):
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "mixtral-8x7b-32768",  # Replace with your desired model
+        "model": "mixtral-8x7b-32768",  
         "messages": [
             {"role": "user", "content": query}
         ]
@@ -54,24 +54,18 @@ def generate_blog_content():
         description = data.get("description")
         # category = data.get("category")
 
-        # Create a prompt template based on user inpu
-        # about '{title}'. The blog should focus 
-        # under the category '{category}'.
-        # prompt = f"""
-        #     Create a blog post on the content {description}. note: word limit should not exceed 150 and should be plagiarism free , without any subhaedings and don not mention any note on blog respone.
-        # """
         prompt = f"""
-        Create a plagiarism-free blog post based on the content: {description}. Ensure the word limit does not exceed 150 words. Avoid using subheadings or including any notes in the response.
+        Create a plagiarism-free blog post based on the content: {description}. Ensure the word limit does not exceed 150 words and generate suitable title. Avoid using subheadings or including any notes in the response.
         """
 
         # Query the Groq API with the generated prompt
         generated_content = query_groq_api(prompt)
 
          # Remove the title from the generated content (assuming title is in the first line)
-        content_without_title = "\n".join(generated_content.splitlines()[1:])
+        # content_without_title = "\n".join(generated_content.splitlines()[1:])
 
         # Return the generated content to the frontend
-        return jsonify({"content": content_without_title}), 200
+        return jsonify({"content": generated_content}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
