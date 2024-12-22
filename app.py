@@ -57,8 +57,11 @@ def generate_blog_content():
         # Create a prompt template based on user inpu
         # about '{title}'. The blog should focus 
         # under the category '{category}'.
+        # prompt = f"""
+        #     Create a blog post on the content {description}. note: word limit should not exceed 150 and should be plagiarism free , without any subhaedings and don not mention any note on blog respone.
+        # """
         prompt = f"""
-            Create a blog post on the content {description}. note: word limit should not exceed 150 and should be plagiarism free , without any subhaedings and don not mention any note on blog respone.
+        Create a plagiarism-free blog post based on the content: {description}. Ensure the word limit does not exceed 150 words. Avoid using subheadings or including any notes in the response.
         """
 
         # Query the Groq API with the generated prompt
