@@ -50,12 +50,16 @@ def generate_blog_content():
     try:
         # Get user input from the frontend
         data = request.json
-        title = data.get("title")
+        # title = data.get("title")
         description = data.get("description")
         category = data.get("category")
 
-        # Create a prompt template based on user input
-        prompt = f"Create a blog post about '{title}'. The blog should focus on {description} under the category of {category}. Provide a catchy introduction, subheadings, and a conclusion. note: word limit strictly 80 words."
+        # Create a prompt template based on user inpu
+        # about '{title}'. The blog should focus t
+        prompt = f"""
+            Create a blog post on {description} under the category of {category}. Provide a catchy introduction, subheadings, and a conclusion. 
+            note: word limit strictly 30 words, do not mention the word limit and any side heading like: introduction,sub heading and conclusion in the response and give the content as paragraph no need no in poin by point.
+        """
 
         # Query the Groq API with the generated prompt
         generated_content = query_groq_api(prompt)
