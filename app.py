@@ -65,8 +65,9 @@ def generate_blog_content():
         Output: Presenting the outcome of my second task during the Data Science internship: Health Insurance Premium Prediction, assigned by CompWallah.
 
     
-        📊 hashtag#DataScience hashtag#Internship hashtag#CompWallah hashtag#HealthInsurance hashtag#PremiumPrediction
-
+        📊 #DataScience #Internship #CompWallah #HealthInsurance #PremiumPrediction
+           
+        Note: Don't mention chatbot content like eg. 'sure i can help...' response in the output. send back the corrected content only.
         its your turn:
         context:{description}
         Output:
