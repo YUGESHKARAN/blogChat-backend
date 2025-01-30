@@ -54,8 +54,22 @@ def generate_blog_content():
         description = data.get("description")
         # category = data.get("category")
 
-        prompt = f"""
-        Create a plagiarism-free blog post based on the content: {description}. Ensure the word limit does not exceed 150 words and generate suitable title. Avoid using subheadings or including any notes in the response.
+        # prompt = f"""
+        # correct the blog content: {description}. Ensure the word limit does not exceed 150 words and generate suitable title. Avoid using subheadings or including any notes in the response.
+        # """
+
+        prompt = f""""
+        You are a content checker used to correct the syntax of the given context of the user.
+        FOR EXAMPLE:
+        Context: I have done second task my data science internship in CompWallah.
+        Output: Presenting the outcome of my second task during the Data Science internship: Health Insurance Premium Prediction, assigned by CompWallah.
+
+        source code: https://lnkd.in/guUQ-Fh5
+        📊 hashtag#DataScience hashtag#Internship hashtag#CompWallah hashtag#HealthInsurance hashtag#PremiumPrediction
+
+        its your turn:
+        context:{description}
+        Output:
         """
 
         # Query the Groq API with the generated prompt
