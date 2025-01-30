@@ -64,7 +64,7 @@ def generate_blog_content():
         Context: I have done second task my data science internship in CompWallah.
         Output: Presenting the outcome of my second task during the Data Science internship: Health Insurance Premium Prediction, assigned by CompWallah.
 
-        source code: https://lnkd.in/guUQ-Fh5
+    
         📊 hashtag#DataScience hashtag#Internship hashtag#CompWallah hashtag#HealthInsurance hashtag#PremiumPrediction
 
         its your turn:
