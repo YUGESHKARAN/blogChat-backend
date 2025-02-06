@@ -67,7 +67,7 @@ def generate_blog_content():
     
         📊 #DataScience #Internship #CompWallah #HealthInsurance #PremiumPrediction
            
-        Note: Don't mention chatbot content like eg. 'sure i can help...' response in the output. send back the corrected content only.
+        Note: Don't mention chatbot content like eg. 'sure i can help...' response in the output. send back the corrected content only along with #terms.
         its your turn:
         context:{description}
         Output:
