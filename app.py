@@ -24,7 +24,8 @@ def query_groq_api(query):
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "mixtral-8x7b-32768",  
+        # "model": "mixtral-8x7b-32768",  
+        "model": "llama-3.1-8b-instant",  
         "messages": [
             {"role": "user", "content": query}
         ]
@@ -67,7 +68,9 @@ def generate_blog_content():
     
         📊 #DataScience #Internship #CompWallah #HealthInsurance #PremiumPrediction
            
-        Note: Don't mention chatbot content like eg. 'sure i can help...' response in the output. send back the corrected content only along with #terms.
+        Note: 
+        1. Do not mention chatbot content like eg. 'sure i can help...' response in the output. send back the corrected content only along with #terms.
+        2. Avoid aviod adding new content
         its your turn:
         context:{description}
         Output:
