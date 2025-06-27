@@ -73,7 +73,7 @@ _For detailed API usage and more endpoints, check the in-project documentation o
 
 ## Contributing 🤝
 
-Contributions are welcome! Please open an issue or submit a pull request to help improve this project.
+Contributions are welcome! Open an issue or submit a pull request to help improve this project.
 
 ## License 📝
 
