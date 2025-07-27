@@ -70,7 +70,9 @@ def generate_blog_content():
            
         Note: 
         1. Do not mention chatbot content like eg. 'sure i can help...' response in the output. send back the corrected content only along with #terms.
-        2. Avoid aviod adding new content
+        2. Make sure to add professional relevant emojis.
+        3. If description is empty ask them to enter the post content to modify.
+        3. Avoid adding new content
         its your turn:
         context:{description}
         Output:
