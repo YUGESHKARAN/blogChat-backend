@@ -1,5 +1,6 @@
-langchain-groq
 Flask
 requests
 flask-cors
 python-dotenv
+groq
+openai 

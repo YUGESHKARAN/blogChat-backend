@@ -2,9 +2,7 @@ import requests
 from flask import Flask, request, jsonify
 from flask_cors import CORS  # Import CORS
 import os
-from dotenv import load_dotenv
-from openai import OpenAI
-
+from dotenv import load_dotenv  
 
 # Load environment variables from .env file
 load_dotenv()
@@ -19,23 +17,27 @@ CORS(app)
 groq_endpoint = "https://api.groq.com/openai/v1/chat/completions"
 groq_api_key = os.getenv('GROQ_API_KEY')  # Replace with your actual Groq API key
 
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-)  
 # Function to query Groq API
 def query_groq_api(query):
-   
+    headers = {
+        "Authorization": f"Bearer {groq_api_key}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+      
+        "model": "llama-3.1-8b-instant",  
+        "messages": [
+            {"role": "user", "content": query}
+        ]
+    }
 
     # Send the query to Groq's API and get the response
     try:
-        completion = client.chat.completions.create(
-            model="gpt-4.1",
-            messages=[
-                {"role": "user", "content": query}
-            ]
-            )
+        response = requests.post(groq_endpoint, json=payload, headers=headers)
+        response.raise_for_status()  # Raise an error if the request failed
+        data = response.json()
         # Extract the generated content from the response
-        generated_content = completion.choices[0].message.content
+        generated_content = data.get("choices", [{}])[0].get("message", {}).get("content", "")
         return generated_content
     except requests.exceptions.RequestException as e:
         return f"Error querying Groq API: {str(e)}"
@@ -71,7 +73,6 @@ def generate_blog_content():
         2. Make sure to add professional relevant emojis.
         3. If description is empty ask them to enter the post content to modify.
         3. Avoid adding new content
-        4.Make it as humanized,  do not include AI content like -  Thrilled to announce that.
         its your turn:
         context:{description}
         Output:
