@@ -7,9 +7,11 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 from google.api_core.exceptions import GoogleAPIError
 
-from langsmith import traceable
+from langsmith import traceable, Client
 # Load environment variables from .env file
 load_dotenv()
+
+client = Client()
 
 # Initialize the Flask application
 app = Flask(__name__)
