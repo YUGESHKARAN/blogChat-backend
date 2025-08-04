@@ -3,11 +3,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS  # Import CORS
 import os
 from dotenv import load_dotenv
-# from openai import OpenAI
-import google.generativeai as genai
-from google.api_core.exceptions import GoogleAPIError
+from openai import OpenAI
 
-from langsmith import traceable
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -17,20 +15,31 @@ app = Flask(__name__)
 # Apply CORS to the app (allow all origins by default)
 CORS(app)
 
+# Define the Groq API endpoint and the API key
+groq_endpoint = "https://api.groq.com/openai/v1/chat/completions"
+groq_api_key = os.getenv('GROQ_API_KEY')  # Replace with your actual Groq API key
 
-genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY"),
+)  
+# Function to query Groq API
+def query_groq_api(query):
+   
 
-# Initialize the Gemini model
-model = genai.GenerativeModel('gemini-1.5-flash')
-
-# Function to query Gemini API
-@traceable(name="blogbrowser-backend")
-def query_gemini(query):
+    # Send the query to Groq's API and get the response
     try:
-        response = model.generate_content(query)
-        return response.text
-    except GoogleAPIError as e:
-        return f"Error querying Gemini API: {str(e)}"
+        completion = client.chat.completions.create(
+            model="gpt-4.1",
+            messages=[
+                {"role": "user", "content": query}
+            ]
+            )
+        # Extract the generated content from the response
+        generated_content = completion.choices[0].message.content
+        return generated_content
+    except requests.exceptions.RequestException as e:
+        return f"Error querying Groq API: {str(e)}"
+    
 @app.route("/") 
 def index():
     return "Welcome to the Blog Content Generator API!"
@@ -69,7 +78,7 @@ def generate_blog_content():
         """
 
         # Query the Groq API with the generated prompt
-        generated_content = query_gemini(prompt)
+        generated_content = query_groq_api(prompt)
 
          # Remove the title from the generated content (assuming title is in the first line)
         # content_without_title = "\n".join(generated_content.splitlines()[1:])
