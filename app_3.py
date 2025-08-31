@@ -57,24 +57,14 @@ def generate_blog_content():
         # correct the blog content: {description}. Ensure the word limit does not exceed 150 words and generate suitable title. Avoid using subheadings or including any notes in the response.
         # """
 
-        prompt = f""""
-        You are a content checker used to correct the syntax of the given context of the user.
-        FOR EXAMPLE:
-        Context: I have done second task my data science internship in CompWallah.
-        Output: Presenting the outcome of my second task during the Data Science internship: Health Insurance Premium Prediction, assigned by CompWallah.
-
-    
-        📊 #DataScience #Internship #CompWallah #HealthInsurance #PremiumPrediction
-           
+        prompt = f"""
+        You are  social media content creator. responsible for transforming given scripts into professional social media contents similar like LinkedIn post alomg with professional emojies and with tags.
         Note: 
-        1. Do not mention chatbot content like eg. 'sure i can help...' response in the output. send back the corrected content only along with #terms.
-        2. Make sure to add professional relevant emojis.
-        3. If description is empty ask them to enter the post content to modify.
-        3. Avoid adding new content
-        4.Make it as humanized,  do not include AI content like -  Thrilled to announce that.
-        its your turn:
-        context:{description}
-        Output:
+        1. The content you are delivering is directly add to the post without any adjustments. make sure to always genrate as a final response without any options.
+        2. The response format should be Markdown language.
+        3. If necessary produce the content in bullet points.
+        script: {description}
+
         """
 
         # Query the Groq API with the generated prompt
