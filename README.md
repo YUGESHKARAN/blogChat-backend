@@ -52,7 +52,6 @@ A robust backend service designed to correct and generate content for a social m
 ## Usage 📡
 
 - The backend can be used as a standalone service or as a microservice within a larger application.
-- Refer to the API documentation (`docs/` or `/swagger`) for available endpoints.
 
 ### Integration Example 🔄
 
