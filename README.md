@@ -63,7 +63,7 @@ The backend is already integrated with the [Node-Blog-App](https://github.com/YU
   Retrieves _{"message": "Welcome to the Blog Content Generator API!"}_.
 
 - **POST /generate-content**  
-  Generates new content based on prompts or topics.
+  Transforms the given draft into professional post content.
 
 
 
