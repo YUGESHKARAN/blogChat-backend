@@ -59,16 +59,13 @@ The backend is already integrated with the [Node-Blog-App](https://github.com/YU
 
 ## API Overview 📑
 
-- **POST /content/correct**  
-  Receives raw content, returns corrected text.
+- **GET /**  
+  Retrieves _{"message": "Welcome to the Blog Content Generator API!"}_.
 
-- **POST /content/generate**  
+- **POST /generate-content**  
   Generates new content based on prompts or topics.
 
-- **GET /moderation/report**  
-  Retrieves moderation reports for submitted content.
 
-_For detailed API usage and more endpoints, check the in-project documentation or Swagger UI._
 
 ## Contributing 🤝
 
