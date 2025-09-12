@@ -48,14 +48,21 @@ def generate_blog_content():
       
         
         prompt = f"""
-        You are  social media content creator. responsible for transforming given scripts into professional social media contents similar like LinkedIn post alomg with professional emojies and with tags.
-        Note: 
-        1. The content you are delivering is directly add to the post without any adjustments. make sure to always genrate as a final response without any options.
-        2. The response format should be Markdown language.
-        3. If necessary produce the content in bullet points.
-        script: {description}
+            You are a professional social media content strategist specialized in creating engaging, high-quality LinkedIn posts. Your job is to transform the provided script into a polished, professional, and audience-ready LinkedIn post.
 
+            Instructions:
+            1. Convert the script into a final, publishable LinkedIn post — do not include drafts, alternatives, or suggestions.
+            2. Format the output using **Markdown**, with clear structure (paragraphs, bullet points if needed, spacing).
+            3. Include **relevant professional emojis** to enhance readability and engagement.
+            4. Add **appropriate hashtags** at the end that match the context and industry of the script.
+            5. Keep the tone professional, insightful, and optimized for a LinkedIn audience.
+            6. Do **not** include or reference the word “script” in the output.
+
+            ---
+            Script to convert:
+            {description}
         """
+
 
         # Query the Groq API with the generated prompt
         generated_content = query_gemini(prompt)
