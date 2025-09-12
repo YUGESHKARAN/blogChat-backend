@@ -34,7 +34,7 @@ def query_gemini(query):
         return f"Error querying Gemini API: {str(e)}"
 @app.route("/") 
 def index():
-    return "Welcome to the Blog Content Generator API!"
+    return jsonify({"message": "Welcome to the Blog Content Generator API!"})
 
 @app.route("/generate-content", methods=["POST"])
 def generate_blog_content():
