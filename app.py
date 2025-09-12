@@ -77,4 +77,5 @@ def generate_blog_content():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 4000))  # Use the port provided by the platform
+    app.run(host='0.0.0.0', port=port, debug=True)
