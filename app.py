@@ -22,7 +22,7 @@ CORS(app)
 genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
 
 # Initialize the Gemini model
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 # # Function to query Gemini API
 # @traceable(name="blogbrowser-backend")
@@ -43,9 +43,7 @@ def generate_blog_content():
         data = request.json
         # title = data.get("title")
         description = data.get("description")
-        # category = data.get("category")
-
-      
+        # category = data.get("category")      
         
         prompt = f"""
             You are a professional social media content strategist specialized in creating engaging, high-quality LinkedIn posts. Your job is to transform the provided script into a polished, professional, and audience-ready LinkedIn post.
