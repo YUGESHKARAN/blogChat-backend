@@ -4,7 +4,7 @@ from flask_cors import CORS  # Import CORS
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
-
+from langsmith import  Client,traceable
 
 # Load environment variables from .env file
 load_dotenv()
@@ -12,6 +12,8 @@ load_dotenv()
 # Initialize the Flask application
 app = Flask(__name__)
 
+
+client = Client()
 # Apply CORS to the app (allow all origins by default)
 CORS(app)
 
@@ -23,6 +25,7 @@ client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
 )  
 # Function to query Groq API
+@traceable(name="blogbrowser-backend")
 def query_groq_api(query):
    
 

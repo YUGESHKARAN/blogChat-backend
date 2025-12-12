@@ -2,7 +2,7 @@ Flask
 requests
 flask-cors
 python-dotenv
-google-generativeai
+langchain_groq
 langsmith
 # groq
 # openai 
