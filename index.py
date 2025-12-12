@@ -41,19 +41,24 @@ def welcome():
 
 @app.route("/generate-content", methods=['POST'])
 def generate_content():
-    data = request.json
-    description = data.get("description","")
+    try:
+        data = request.json
+        description = data.get("description","")
 
-    query = prompt.invoke({"description":description, "chat_history":chat_message})
+        query = prompt.invoke({"description":description, "chat_history":chat_message})
 
-    chat_message.append({"user":query})
-    chain = prompt | model | StrOutputParser()
-    result = chain.invoke({"description":description, "chat_history":chat_message}) 
-    chat_message.append({"assistant":result})
+        chat_message.append({"user":query.messages[0].content})
+        chain = prompt | model | StrOutputParser()
+        result = chain.invoke({"description":description, "chat_history":chat_message}) 
+        chat_message.append({"assistant":result})
 
-    return jsonify({"content":result})
+        # print("chat history:", chat_message)
+
+        return jsonify({"content":result}),200
+    except Exception as e:
+        return jsonify({"error":str(e)}), 500
 
 
 if __name__ =="__main__":
-    app.run(host="0.0.0.0",port=3000)
+    app.run(host="0.0.0.0", debug=True)
 
