@@ -1,6 +1,6 @@
 def is_valid_post_description(text: str):
 
-    if not text or len(text.split()) < 8:
+    if not text or len(text.split()) < 15:
         return False
 
     banned_patterns = [
