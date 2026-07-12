@@ -218,8 +218,8 @@ Refined Markdown Output:
 """
 
 
-# llm = "openai/gpt-oss-20b"
-llm = "openai/gpt-oss-120b"
+llm = "openai/gpt-oss-20b"
+# llm = "openai/gpt-oss-120b"
 model = ChatGroq(model=llm)
 # model = ChatGroq(model="llama-3.1-8b-instant")
 
