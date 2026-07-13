@@ -34,7 +34,7 @@ client = Client()
 CORS(app)
 
 
-
+MAX_HISTORY =  6
 chat_message = []
 
 template = """
@@ -236,6 +236,7 @@ def welcome():
 @limiter.limit("20 per minute")
 @token_required
 def generate_content():
+    global chat_message
     try:
         data = request.json
         description = data.get("description","")
@@ -248,12 +249,14 @@ def generate_content():
                 "content": "Please provide a valid technical post description."
             }), 200
 
-        query = prompt.invoke({"description":description, "chat_history":chat_message})
+        # query = prompt.invoke({"description":description, "chat_history":chat_message})
 
-        chat_message.append({"user":query.messages[0].content})
+        chat_message.append({"user":description})
         chain = prompt | model | StrOutputParser()
         result = chain.invoke({"description":description, "chat_history":chat_message}) 
         chat_message.append({"assistant":result})
+
+        chat_message = chat_message[-MAX_HISTORY:]
 
         # print("chat history:", chat_message)
         return jsonify({"content":result}),200
@@ -263,5 +266,5 @@ def generate_content():
 
 
 if __name__ =="__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=False)
 
